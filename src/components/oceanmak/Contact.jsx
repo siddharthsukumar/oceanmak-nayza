@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Phone, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 
@@ -8,13 +9,21 @@ const CONTACT = [
 { icon: Mail, label: "Email", value: "support@oceanmak.com", href: "mailto:support@oceanmak.com" },
 { icon: MapPin, label: "Location", value: "Ajman, UAE", href: "https://maps.google.com/?q=Ajman,UAE" }];
 
-
 const INITIAL = { name: "", company: "", email: "", phone: "", project: "", message: "" };
+
+// Cloudflare Turnstile site keys:
+//   "1x00000000000000000000AA"  → always passes (dev/testing)
+//   "2x00000000000000000000AB"  → always blocks (test failure flow)
+// Replace with your real site key from https://dash.cloudflare.com → Turnstile
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
 
 export default function Contact() {
   const [form, setForm] = useState(INITIAL);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaError, setCaptchaError] = useState("");
+  const turnstileRef = useRef(null);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -24,9 +33,19 @@ export default function Contact() {
       setError("Please complete name, email and message.");
       return;
     }
+    if (!captchaToken) {
+      setCaptchaError("Please complete the verification check.");
+      return;
+    }
     setError("");
+    setCaptchaError("");
+
+    // Reset Turnstile for next submission
+    turnstileRef.current?.reset();
+    setCaptchaToken(null);
+
     // B2B enquiry — open a pre-filled email to the Oceanmak team.
-    const subject = encodeURIComponent(`Project Enquiry — ${form.project || "General"}`);
+    const subject = encodeURIComponent(`Project Enquiry \u2014 ${form.project || "General"}`);
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nPhone: ${form.phone}\nProject / Requirement: ${form.project}\n\nMessage:\n${form.message}`
     );
@@ -60,7 +79,6 @@ export default function Contact() {
                 key={c.label}
                 href={c.href}
                 className="group flex items-center gap-4 bg-abyss p-5 hover:bg-abyss-2 transition-colors">
-                
                   <span className="flex items-center justify-center h-11 w-11 border border-line text-precision group-hover:border-precision transition-colors">
                     <c.icon size={18} strokeWidth={1.5} />
                   </span>
@@ -73,7 +91,7 @@ export default function Contact() {
             </div>
 
             <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-faint/50">
-              // Serving Abu Dhabi, Dubai, Ajman & the wider Middle East
+              // Serving Abu Dhabi, Dubai, Ajman &amp; the wider Middle East
             </div>
           </div>
 
@@ -82,8 +100,8 @@ export default function Contact() {
             <Reveal>
               <div className="border border-line bg-abyss-2 p-7 lg:p-10 relative">
                 <span className="absolute top-3 left-3 label-mono text-precision/70">FORM // ENQUIRY</span>
-                {sent ?
-                <div className="min-h-[360px] flex flex-col items-center justify-center text-center">
+                {sent ? (
+                  <div className="min-h-[360px] flex flex-col items-center justify-center text-center">
                     <CheckCircle2 size={48} className="text-precision" />
                     <h3 className="mt-5 font-display font-semibold text-white text-2xl">
                       Enquiry ready to send
@@ -97,17 +115,17 @@ export default function Contact() {
                       .
                     </p>
                     <button
-                    onClick={() => {
-                      setSent(false);
-                      setForm(INITIAL);
-                    }}
-                    className="mt-6 font-mono uppercase tracking-[0.15em] text-xs text-white border border-line px-5 py-3 hover:border-precision hover:text-precision transition-colors">
-                    
+                      onClick={() => {
+                        setSent(false);
+                        setForm(INITIAL);
+                      }}
+                      className="mt-6 font-mono uppercase tracking-[0.15em] text-xs text-white border border-line px-5 py-3 hover:border-precision hover:text-precision transition-colors"
+                    >
                       Send another enquiry
                     </button>
-                  </div> :
-
-                <form onSubmit={submit} className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  </div>
+                ) : (
+                  <form onSubmit={submit} className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="label-mono text-faint">Name *</label>
                       <input className={`${inputClass} mt-2`} value={form.name} onChange={set("name")} placeholder="Your name" />
@@ -132,25 +150,52 @@ export default function Contact() {
                       <label className="label-mono text-faint">Message *</label>
                       <textarea rows={5} className={`${inputClass} mt-2 resize-none`} value={form.message} onChange={set("message")} placeholder="Describe your project and scope..." />
                     </div>
-                    {error &&
-                  <p className="sm:col-span-2 text-precision text-xs font-mono">{error}</p>
-                  }
+
+                    {/* Cloudflare Turnstile — dark theme, no branding banners */}
+                    <div className="sm:col-span-2">
+                      <Turnstile
+                        ref={turnstileRef}
+                        siteKey={TURNSTILE_SITE_KEY}
+                        options={{
+                          theme: "dark",
+                          size: "flexible",
+                          appearance: "always",
+                        }}
+                        onSuccess={(token) => {
+                          setCaptchaToken(token);
+                          setCaptchaError("");
+                        }}
+                        onExpire={() => setCaptchaToken(null)}
+                        onError={() => {
+                          setCaptchaToken(null);
+                          setCaptchaError("Verification failed. Please try again.");
+                        }}
+                        className="w-full"
+                      />
+                      {captchaError && (
+                        <p className="mt-2 text-precision text-xs font-mono">{captchaError}</p>
+                      )}
+                    </div>
+
+                    {error && (
+                      <p className="sm:col-span-2 text-precision text-xs font-mono">{error}</p>
+                    )}
                     <div className="sm:col-span-2">
                       <button
-                      type="submit"
-                      className="inline-flex items-center gap-2 bg-precision text-abyss font-mono uppercase tracking-[0.15em] text-xs font-semibold px-7 py-4 hover:bg-white transition-colors">
-                      
+                        type="submit"
+                        className="inline-flex items-center gap-2 bg-precision text-abyss font-mono uppercase tracking-[0.15em] text-xs font-semibold px-7 py-4 hover:bg-white transition-colors"
+                      >
                         Submit Enquiry <Send size={14} />
                       </button>
                     </div>
                   </form>
-                }
+                )}
                 <span className="corner-accent" />
               </div>
             </Reveal>
           </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }
