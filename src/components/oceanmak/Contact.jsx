@@ -151,15 +151,15 @@ export default function Contact() {
                       <textarea rows={5} className={`${inputClass} mt-2 resize-none`} value={form.message} onChange={set("message")} placeholder="Describe your project and scope..." />
                     </div>
 
-                    {/* Cloudflare Turnstile — dark theme, no branding banners */}
+                    {/* Cloudflare Turnstile — interaction-only: invisible for most users,
+                        only shows a challenge widget if Cloudflare is uncertain about the visitor */}
                     <div className="sm:col-span-2">
                       <Turnstile
                         ref={turnstileRef}
                         siteKey={TURNSTILE_SITE_KEY}
                         options={{
                           theme: "dark",
-                          size: "flexible",
-                          appearance: "always",
+                          appearance: "interaction-only",
                         }}
                         onSuccess={(token) => {
                           setCaptchaToken(token);
@@ -170,7 +170,6 @@ export default function Contact() {
                           setCaptchaToken(null);
                           setCaptchaError("Verification failed. Please try again.");
                         }}
-                        className="w-full"
                       />
                       {captchaError && (
                         <p className="mt-2 text-precision text-xs font-mono">{captchaError}</p>

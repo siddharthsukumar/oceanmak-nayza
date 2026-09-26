@@ -29,4 +29,6 @@ dist-ssr
 
 .env
 .vite
-base44/.app.jsonc
+
+# macOS custom folder icon files (zero-byte, created by Finder)
+Icon?
