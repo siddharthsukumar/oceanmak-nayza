@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
+import logo from "../../assests/images/Logo.png";
 
 const NAV = [
   { label: "Home", href: "#top" },
@@ -33,17 +34,26 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-abyss/95 backdrop-blur border-b border-line" : "bg-transparent"
+        scrolled
+          ? "bg-abyss/95 backdrop-blur border-b border-line"
+          : "bg-transparent"
       }`}
     >
       <div className="relative max-w-[1400px] mx-auto px-5 lg:px-10">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#top" onClick={(e) => go(e, "#top")} className="flex items-center gap-2 select-none">
-            <span className="h-2.5 w-2.5 bg-precision animate-pulse-soft" />
-            <span className="font-display font-bold tracking-[0.3em] text-white text-lg">OCEANMAK</span>
+          <a
+            href="#top"
+            onClick={(e) => go(e, "#top")}
+            className="flex items-center select-none h-10"
+          >
+            <img
+              src={logo}
+              alt="Oceanmak logo"
+              className="h-full w-auto object-contain"
+              draggable="false"
+            />
           </a>
-
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-7">
             {NAV.map((item) => (
@@ -57,7 +67,6 @@ export default function Navbar() {
               </a>
             ))}
           </nav>
-
           <div className="hidden lg:block">
             <a
               href="#contact"
@@ -67,7 +76,6 @@ export default function Navbar() {
               Request a Quote
             </a>
           </div>
-
           {/* Mobile toggle */}
           <button
             className="lg:hidden text-white p-2 -mr-2"
