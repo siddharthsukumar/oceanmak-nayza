@@ -5,9 +5,9 @@ import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 
 const CONTACT = [
-{ icon: Phone, label: "Phone", value: "+971 52 540 1615\xA0 | + 971 67 161 721\xA0 \xA0", href: "tel:+971525401615" },
+{ icon: Phone, label: "Phone", value: "+971 067161721\xA0", href: "tel:+971067161721" },
 { icon: Mail, label: "Email", value: "support@oceanmak.com", href: "mailto:support@oceanmak.com" },
-{ icon: MapPin, label: "Location", value: "Ajman, UAE", href: "https://maps.google.com/?q=Ajman,UAE" }];
+{ icon: MapPin, label: "Location", value: "Ajman, UAE", href: "https://maps.app.goo.gl/zNa326cNk4sh599D7" }];
 
 const INITIAL = { name: "", company: "", email: "", phone: "", project: "", message: "" };
 
@@ -193,6 +193,17 @@ export default function Contact() {
               </div>
             </Reveal>
           </div>
+        </div>
+        <div className="mt-10 lg:mt-16 overflow-hidden border border-line">
+          <iframe
+            title="OCEANMAK Diving Services LLC location in Ajman"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.0358905669814!2d55.5439735!3d25.437063600000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60a6fed1e8423145%3A0x56a268a8b6fd8185!2sOCEANMAK%20DIVING%20SERVICES%20LLC!5e0!3m2!1sen!2sin!4v1790881887764!5m2!1sen!2sin"
+            className="block aspect-[4/3] w-full sm:aspect-[16/7]"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         </div>
       </div>
     </section>

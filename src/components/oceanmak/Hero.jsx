@@ -35,7 +35,7 @@ export default function Hero() {
         <div className="max-w-4xl">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-10 bg-precision" />
-            <span className="label-mono text-precision">UAE/INDIA  //  MARINE CONTRACTING</span>
+            <span className="label-mono text-precision">UAE  //  MARINE CONTRACTING</span>
           </div>
 
           <h1 className="font-display font-bold uppercase text-white text-4xl sm:text-5xl lg:text-7xl leading-[0.95] tracking-[-0.02em]">
