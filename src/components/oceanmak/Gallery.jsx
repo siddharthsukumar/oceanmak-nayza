@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Image } from "@/components/ui/image";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
-import { IMAGES } from "@/lib/oceanmakImages";
 
 const CATEGORIES = [
   "All",
@@ -13,24 +12,35 @@ const CATEGORIES = [
   "Aquatic Facilities",
 ];
 
-const ITEMS = [
-  { img: IMAGES.services.welding, cat: "Commercial Diving", title: "Underwater Welding", ratio: "aspect-[4/5]" },
-  { img: IMAGES.services.inspection, cat: "Underwater Inspection", title: "Harbour Pylon Inspection", ratio: "aspect-[4/3]" },
-  { img: IMAGES.services.marineConstruction, cat: "Marine Construction", title: "Waterfront Works", ratio: "aspect-[3/4]" },
-  { img: IMAGES.projects.emiratesSteel, cat: "Industrial Projects", title: "Emirates Steel", ratio: "aspect-[4/3]" },
-  { img: IMAGES.projects.seaworld, cat: "Aquatic Facilities", title: "SeaWorld Abu Dhabi", ratio: "aspect-[4/5]" },
-  { img: IMAGES.services.construction, cat: "Commercial Diving", title: "Submerged Construction", ratio: "aspect-[4/3]" },
-  { img: IMAGES.services.maintenance, cat: "Commercial Diving", title: "Underwater Maintenance", ratio: "aspect-[3/4]" },
-  { img: IMAGES.services.pipeline, cat: "Underwater Inspection", title: "Subsea Pipeline Survey", ratio: "aspect-[4/3]" },
-  { img: IMAGES.services.salvage, cat: "Marine Construction", title: "Salvage Operation", ratio: "aspect-[4/5]" },
-  { img: IMAGES.projects.dubaiMetro, cat: "Industrial Projects", title: "Dubai Metro Blue Line", ratio: "aspect-[4/3]" },
-  { img: IMAGES.services.pontoonMarina, cat: "Marine Construction", title: "Pontoon & Marina", ratio: "aspect-[3/4]" },
-  { img: IMAGES.services.buoy, cat: "Aquatic Facilities", title: "Barrier Net Installation", ratio: "aspect-[4/3]" },
-];
+const GALLERY_IMAGES = import.meta.glob(
+  "../../assests/images/gallery/*.{avif,gif,jpg,jpeg,png,webp}",
+  { eager: true, import: "default", query: "?url" },
+);
+
+const ITEMS = Object.entries(GALLERY_IMAGES).map(([path, img]) => {
+  const filename = path
+    .split("/")
+    .pop()
+    .replace(/\.[^.]+$/, "");
+  const normalizedFilename = filename.toLowerCase().replace(/[-_]+/g, " ");
+  const cat = CATEGORIES.slice(1).find((category) =>
+    normalizedFilename.includes(category.toLowerCase()),
+  );
+
+  return {
+    img,
+    cat,
+    title: filename
+      .replace(/[-_]+/g, " ")
+      .replace(/\b\w/g, (letter) => letter.toUpperCase()),
+    ratio: "aspect-[4/3]",
+  };
+});
 
 export default function Gallery() {
   const [active, setActive] = useState("All");
-  const filtered = active === "All" ? ITEMS : ITEMS.filter((i) => i.cat === active);
+  const filtered =
+    active === "All" ? ITEMS : ITEMS.filter((i) => i.cat === active);
 
   return (
     <section id="gallery" className="bg-abyss-2 section-rule">
@@ -45,8 +55,8 @@ export default function Gallery() {
             </h2>
           </div>
           <p className="text-white/55 max-w-md text-[15px] leading-relaxed">
-            A visual record of commercial diving, underwater and marine construction
-            work across the region.
+            A visual record of commercial diving, underwater and marine
+            construction work across the region.
           </p>
         </div>
 
@@ -67,13 +77,13 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Masonry */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
+        {/* Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filtered.map((item, i) => (
             <Reveal
               key={item.title}
               delay={(i % 3) * 0.05}
-              className="group relative mb-4 break-inside-avoid overflow-hidden border border-line"
+              className="group relative overflow-hidden border border-line"
             >
               <div className={`relative ${item.ratio}`}>
                 <Image
@@ -81,14 +91,17 @@ export default function Gallery() {
                   alt={item.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   fittingType="fill"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-abyss/40 group-hover:bg-abyss/10 transition-colors" />
                 <span className="absolute top-3 left-3 label-mono text-precision text-[10px] bg-abyss/60 px-2 py-1">
                   {item.cat}
                 </span>
-                <div className="absolute bottom-0 inset-x-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform">
-                  <h3 className="font-display font-semibold text-white text-sm">{item.title}</h3>
-                </div>
+                {/* <div className="absolute bottom-0 inset-x-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform">
+                  <h3 className="font-display font-semibold text-white text-sm">
+                    {item.title}
+                  </h3>
+                </div> */}
               </div>
               <span className="corner-accent" />
             </Reveal>
