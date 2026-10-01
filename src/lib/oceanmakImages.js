@@ -32,6 +32,14 @@ export const IMAGES = {
   },
 
   projects: {
+    seaworld:
+      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/676e2a946_generated_551ddfd2.png",
+    emiratesSteel:
+      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/81ff12f19_generated_aeb979ed.png",
+    dubaiMetro:
+      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/9b7efc6dd_generated_9e0a1e1f.png",
+    emaar:
+      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/5849cd0fe_generated_5ccb5041.png",
     dubaiMetro:
       "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/9b7efc6dd_generated_9e0a1e1f.png",
   },
