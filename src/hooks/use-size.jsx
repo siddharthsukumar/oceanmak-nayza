@@ -1,5 +1,9 @@
 import * as React from "react"
 
+// useLayoutEffect warns during SSR/prerender; fall back to useEffect there (it never runs on the server anyway).
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect
+
 export function useSize(ref) {
   const [size, setSize] = React.useState(null)
 
@@ -8,7 +12,7 @@ export function useSize(ref) {
   // very first painted frame instead of a guess. A ResizeObserver's first
   // callback arrives too late for that — by then an <img> src guess has
   // already been dispatched to the network.
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const element = ref.current
     if (!element) return
 
