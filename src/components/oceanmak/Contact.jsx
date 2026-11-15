@@ -8,8 +8,14 @@ const CONTACT = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+971 067161721\xA0",
-    href: "tel:+971067161721",
+    value: "+971 6 716 1721",
+    href: "tel:+97167161721",
+  },
+  {
+    icon: Phone,
+    label: "Mobile",
+    value: "+971 55 570 0354",
+    href: "tel:+971555700354",
   },
   {
     icon: Mail,
@@ -20,7 +26,7 @@ const CONTACT = [
   {
     icon: MapPin,
     label: "Location",
-    value: "Ajman, UAE",
+    value: "Ajman, Abu Dhabi, Kochi",
     href: "https://maps.app.goo.gl/zNa326cNk4sh599D7",
   },
 ];
@@ -118,7 +124,7 @@ export default function Contact() {
             </div>
 
             <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-faint/50">
-              // Serving Abu Dhabi, Dubai, Ajman &amp; the wider Middle East
+              // Serving Abu Dhabi, Dubai, Ajman, the wider Middle East &amp; India
             </div>
           </div>
 
