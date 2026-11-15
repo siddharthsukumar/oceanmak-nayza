@@ -1,9 +1,4 @@
-import { useLocation } from 'react-router-dom';
-
 export default function PageNotFound() {
-    const location = useLocation();
-    const pageName = location.pathname.substring(1);
-
     return (
         <div className="min-h-screen flex items-center justify-center p-6 bg-abyss">
             <div className="max-w-md w-full">
@@ -18,20 +13,20 @@ export default function PageNotFound() {
                             Page Not Found
                         </h2>
                         <p className="text-white/60 leading-relaxed">
-                            The page <span className="font-medium text-white">"{pageName}"</span> could not be found.
+                            The page you are looking for could not be found.
                         </p>
                     </div>
 
                     <div className="pt-6">
-                        <button
-                            onClick={() => window.location.href = '/'}
+                        <a
+                            href="/"
                             className="inline-flex items-center gap-2 font-mono uppercase tracking-[0.15em] text-xs text-white border border-line px-5 py-3 hover:border-precision hover:text-precision transition-colors"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
                             Go Home
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
