@@ -1,16 +1,6 @@
-import { useState } from "react";
 import { Image } from "@/components/ui/image";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
-
-const CATEGORIES = [
-  "All",
-  "Commercial Diving",
-  "Underwater Inspection",
-  "Marine Construction",
-  "Industrial Projects",
-  "Aquatic Facilities",
-];
 
 const GALLERY_IMAGES = import.meta.glob(
   "../../assests/images/gallery/*.{avif,gif,jpg,jpeg,png,webp}",
@@ -22,14 +12,9 @@ const ITEMS = Object.entries(GALLERY_IMAGES).map(([path, img]) => {
     .split("/")
     .pop()
     .replace(/\.[^.]+$/, "");
-  const normalizedFilename = filename.toLowerCase().replace(/[-_]+/g, " ");
-  const cat = CATEGORIES.slice(1).find((category) =>
-    normalizedFilename.includes(category.toLowerCase()),
-  );
 
   return {
     img,
-    cat,
     title: filename
       .replace(/[-_]+/g, " ")
       .replace(/\b\w/g, (letter) => letter.toUpperCase()),
@@ -38,10 +23,6 @@ const ITEMS = Object.entries(GALLERY_IMAGES).map(([path, img]) => {
 });
 
 export default function Gallery() {
-  const [active, setActive] = useState("All");
-  const filtered =
-    active === "All" ? ITEMS : ITEMS.filter((i) => i.cat === active);
-
   return (
     <section id="gallery" className="bg-abyss-2 section-rule">
       <div className="max-w-[1400px] mx-auto px-5 lg:px-10 py-24 lg:py-32">
@@ -60,26 +41,9 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-10 border-b border-line pb-5">
-          {CATEGORIES.map((c) => (
-            <button
-              key={c}
-              onClick={() => setActive(c)}
-              className={`label-mono px-4 py-2 border transition-colors ${
-                active === c
-                  ? "bg-precision text-abyss border-precision"
-                  : "text-white/60 border-line hover:text-precision hover:border-precision/50"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-
         {/* Grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {filtered.map((item, i) => (
+          {ITEMS.map((item, i) => (
             <Reveal
               key={item.title}
               delay={(i % 3) * 0.05}
@@ -94,9 +58,6 @@ export default function Gallery() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-abyss/40 group-hover:bg-abyss/10 transition-colors" />
-                <span className="absolute top-3 left-3 label-mono text-precision text-[10px] bg-abyss/60 px-2 py-1">
-                  {item.cat}
-                </span>
                 {/* <div className="absolute bottom-0 inset-x-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform">
                   <h3 className="font-display font-semibold text-white text-sm">
                     {item.title}
