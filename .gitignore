@@ -31,4 +31,4 @@ dist-ssr
 .vite
 
 # macOS custom folder icon files (zero-byte, created by Finder)
-Icon?
+**/Icon?
