@@ -1,46 +1,48 @@
-// Central image registry. Placeholder URLs are auto-replaced by the platform
-// with permanent optimized media URLs once generation completes.
+// Central image registry. All images are bundled locally (fingerprinted by Vite).
+import img_hero from "@/assets/images/site/hero.webp";
+import img_cta from "@/assets/images/site/cta.webp";
+import img_about from "@/assets/images/site/about.webp";
+import img_service_inspection from "@/assets/images/site/service-inspection.webp";
+import img_service_construction from "@/assets/images/site/service-construction.webp";
+import img_service_maintenance from "@/assets/images/site/service-maintenance.webp";
+import img_service_search_recovery from "@/assets/images/site/service-search-recovery.webp";
+import img_service_salvage from "@/assets/images/site/service-salvage.webp";
+import img_service_marine_construction from "@/assets/images/site/service-marine-construction.webp";
+import img_service_pipeline from "@/assets/images/site/service-pipeline.webp";
+import img_service_pontoon_marina from "@/assets/images/site/service-pontoon-marina.webp";
+import img_service_mooring from "@/assets/images/site/service-mooring.webp";
+import img_service_silt from "@/assets/images/site/service-silt.webp";
+import img_service_welding from "@/assets/images/site/service-welding.webp";
+import img_service_buoy from "@/assets/images/site/service-buoy.webp";
+import img_project_seaworld from "@/assets/images/site/project-seaworld.webp";
+import img_project_emirates_steel from "@/assets/images/site/project-emirates-steel.webp";
+import img_project_dubai_metro from "@/assets/images/site/project-dubai-metro.webp";
+import img_project_emaar from "@/assets/images/site/project-emaar.webp";
+
 export const IMAGES = {
-  hero: "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/d17d085fb_generated_d1ee3103.png",
-  cta: "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/79cbc87ea_generated_2de750dc.png",
-  about:
-    "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/fc80466b8_generated_6175c3bd.png",
+  hero: img_hero,
+  cta: img_cta,
+  about: img_about,
 
   services: {
-    inspection:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/44206d389_generated_f096e33c.png",
-    construction:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/d8a9f85fe_generated_7e0babec.png",
-    maintenance:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/1e3991c20_generated_b00bd6c4.png",
-    searchRecovery:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/0694fe1a6_generated_8a012c24.png",
-    salvage:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/c984046a7_generated_9a640756.png",
-    marineConstruction:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/c9c41c796_generated_d96e7d7f.png",
-    pipeline:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/497221ce6_generated_36c63fc6.png",
-    pontoonMarina:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/8a5fee9b0_generated_d4114d3d.png",
-    mooring:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/784f1ac45_generated_23506b6c.png",
-    silt: "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/41d285f1f_generated_09bb98b5.png",
-    welding:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/b1b006aab_generated_6b53646e.png",
-    buoy: "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/269bcecb4_generated_2ed2e86a.png",
+    inspection: img_service_inspection,
+    construction: img_service_construction,
+    maintenance: img_service_maintenance,
+    searchRecovery: img_service_search_recovery,
+    salvage: img_service_salvage,
+    marineConstruction: img_service_marine_construction,
+    pipeline: img_service_pipeline,
+    pontoonMarina: img_service_pontoon_marina,
+    mooring: img_service_mooring,
+    silt: img_service_silt,
+    welding: img_service_welding,
+    buoy: img_service_buoy,
   },
 
   projects: {
-    seaworld:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/676e2a946_generated_551ddfd2.png",
-    emiratesSteel:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/81ff12f19_generated_aeb979ed.png",
-    dubaiMetro:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/9b7efc6dd_generated_9e0a1e1f.png",
-    emaar:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/5849cd0fe_generated_5ccb5041.png",
-    dubaiMetro:
-      "https://media.base44.com/images/public/6a82dd3d3feda6b1e33c12a1/9b7efc6dd_generated_9e0a1e1f.png",
+    seaworld: img_project_seaworld,
+    emiratesSteel: img_project_emirates_steel,
+    dubaiMetro: img_project_dubai_metro,
+    emaar: img_project_emaar,
   },
 };

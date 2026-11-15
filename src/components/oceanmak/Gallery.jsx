@@ -1,9 +1,9 @@
-import { Image } from "@/components/ui/image";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
+import { GALLERY_ALT } from "./galleryAlt";
 
 const GALLERY_IMAGES = import.meta.glob(
-  "../../assests/images/gallery/*.{avif,gif,jpg,jpeg,png,webp}",
+  "../../assets/images/gallery/*.{avif,gif,jpg,jpeg,png,webp}",
   { eager: true, import: "default", query: "?url" },
 );
 
@@ -15,6 +15,7 @@ const ITEMS = Object.entries(GALLERY_IMAGES).map(([path, img]) => {
 
   return {
     img,
+    alt: GALLERY_ALT[filename] ?? filename.replace(/[-_]+/g, " "),
     title: filename
       .replace(/[-_]+/g, " ")
       .replace(/\b\w/g, (letter) => letter.toUpperCase()),
@@ -50,12 +51,12 @@ export default function Gallery() {
               className="group relative overflow-hidden border border-line"
             >
               <div className={`relative ${item.ratio}`}>
-                <Image
+                <img
                   src={item.img}
-                  alt={item.title}
+                  alt={item.alt}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  fittingType="fill"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-abyss/40 group-hover:bg-abyss/10 transition-colors" />
                 {/* <div className="absolute bottom-0 inset-x-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform">

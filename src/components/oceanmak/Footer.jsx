@@ -40,7 +40,7 @@ export default function Footer() {
               Middle East and India.
             </p>
             <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-faint/60">
-              OCEANMAK MARINE SERVICES LLC
+              OCEANMAK DIVING SERVICES LLC
             </div>
           </div>
 
@@ -121,7 +121,7 @@ export default function Footer() {
             suppressHydrationWarning
             className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint/50"
           >
-            © {new Date().getFullYear()} OCEANMAK MARINE SERVICES LLC — ALL RIGHTS RESERVED
+            © {new Date().getFullYear()} OCEANMAK DIVING SERVICES LLC — ALL RIGHTS RESERVED
           </p>
           <a
             href="#contact"

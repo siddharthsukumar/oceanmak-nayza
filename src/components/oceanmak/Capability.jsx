@@ -1,4 +1,3 @@
-import { Image } from "@/components/ui/image";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 import { IMAGES } from "@/lib/oceanmakImages";
@@ -40,12 +39,12 @@ export default function Capability() {
               className="group relative bg-abyss hover:bg-abyss-2 transition-colors"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
+                <img
                   src={c.img}
+                  loading="lazy"
+                  decoding="async"
                   alt={c.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  fittingType="fill"
-                />
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                 <div className="absolute inset-0 bg-abyss/45 group-hover:bg-abyss/15 transition-colors" />
                 <span className="absolute top-3 left-3 label-mono text-precision text-[10px]">
                   {c.tag}

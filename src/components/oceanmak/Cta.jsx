@@ -1,5 +1,4 @@
 import { ArrowRight, Mail } from "lucide-react";
-import { Image } from "@/components/ui/image";
 import { IMAGES } from "@/lib/oceanmakImages";
 
 const scrollTo = (href) => (e) => {
@@ -11,12 +10,12 @@ export default function Cta() {
   return (
     <section id="cta" className="relative bg-abyss-2 overflow-hidden">
       <div className="absolute inset-0">
-        <Image
+        <img
           src={IMAGES.cta}
+          loading="lazy"
+          decoding="async"
           alt="Underwater perspective of marine infrastructure"
-          className="w-full h-full object-cover"
-          fittingType="fill"
-        />
+          className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-abyss/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-abyss via-abyss/70 to-abyss/30" />
       </div>

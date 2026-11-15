@@ -1,5 +1,4 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { Image } from "@/components/ui/image";
 import { IMAGES } from "@/lib/oceanmakImages";
 
 const scrollTo = (href) => (e) => {
@@ -12,11 +11,15 @@ export default function Hero() {
     <section id="top" className="relative min-h-screen flex items-end overflow-hidden bg-abyss-2">
       {/* Background */}
       <div className="absolute inset-0">
-        <Image
+        <img
           src={IMAGES.hero}
+          width={1376}
+          height={768}
+          // eslint-disable-next-line react/no-unknown-property -- React 18 only knows the lowercase form
+          fetchpriority="high"
+          decoding="async"
           alt="Commercial diver helmet reflecting a subsea welding arc"
-          className="w-full h-full object-cover"
-          fittingType="fill" />
+          className="w-full h-full object-cover" />
         
         <div className="absolute inset-0 bg-gradient-to-t from-abyss via-abyss/80 to-abyss/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-abyss/90 via-abyss/20 to-transparent" />
@@ -35,17 +38,17 @@ export default function Hero() {
         <div className="max-w-4xl">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-10 bg-precision" />
-            <span className="label-mono text-precision">UAE  //  MARINE CONTRACTING</span>
+            <span className="label-mono text-precision">UAE &amp; INDIA  //  COMMERCIAL DIVING</span>
           </div>
 
           <h1 className="font-display font-bold uppercase text-white text-4xl sm:text-5xl lg:text-7xl leading-[0.95] tracking-[-0.02em]">
             Commercial Diving <br className="hidden sm:block" />
-            <span className="text-precision">& Marine Engineering</span> Solutions
+            <span className="text-precision">& Marine Contractor</span> in the UAE &amp; India
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">
-            Professional underwater inspection, construction, maintenance and marine
-            contracting services across the UAE, wider Middle East and India.
+            IMCA certified commercial diving company delivering underwater inspection,
+            construction, maintenance and marine contracting services across the UAE and India.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">

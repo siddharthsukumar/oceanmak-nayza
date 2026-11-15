@@ -5,7 +5,7 @@ const STATS = [
   { value: "UAE", label: "Regional Base" },
   { value: "12+", label: "Core Service Lines" },
   { value: "24/7", label: "Project Response" },
-  { value: "IMCA/ADCI", label: "Aligned Practices" },
+  { value: "IMCA", label: "Certified Contractor" },
 ];
 
 export default function Introduction() {
@@ -28,13 +28,15 @@ export default function Introduction() {
           <div className="lg:col-span-5 lg:pt-2">
             <Reveal delay={0.1}>
               <p className="text-white/70 leading-relaxed text-[15px]">
-                Oceanmak delivers commercial diving and marine contracting solutions
-                for infrastructure, industrial, marine, aquatic and waterfront projects.
+                Oceanmak is an IMCA certified commercial diving company serving the UAE and
+                India. We act as diving contractor and marine contractor for infrastructure,
+                industrial, port, aquatic and waterfront projects.
               </p>
               <p className="mt-4 text-white/60 leading-relaxed text-[15px]">
-                From underwater inspection and construction to maintenance, salvage and
-                subsea support — our teams work to engineered specifications across the
-                UAE, wider Middle East and India.
+                Our underwater services include inspection and survey, underwater construction
+                and repair, salvage and recovery, silt removal, underwater welding and cutting,
+                and marine construction and installation. Teams mobilise from Ajman, Abu Dhabi
+                and Kochi, working to engineered specifications and documented safety procedures.
               </p>
             </Reveal>
           </div>

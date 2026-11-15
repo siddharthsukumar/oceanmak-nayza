@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 
 export default function Reveal({ children, className = "", delay = 0, y = 24 }) {
   return (
-    <motion.div
+    <LazyMotion features={domAnimation}>
+    <m.div
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -10,6 +11,7 @@ export default function Reveal({ children, className = "", delay = 0, y = 24 }) 
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
       {children}
-    </motion.div>
+    </m.div>
+    </LazyMotion>
   );
 }

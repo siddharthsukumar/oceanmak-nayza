@@ -13,7 +13,7 @@ const CONTACT = [
   },
   {
     icon: Phone,
-    label: "Mobile",
+    label: "Alternate Number",
     value: "+971 55 570 0354",
     href: "tel:+971555700354",
   },
@@ -213,9 +213,15 @@ export default function Contact() {
                       <label className="label-mono text-faint">Message *</label>
                       <textarea
                         rows={5}
-                        className={`${inputClass} mt-2 resize-none`}
+                        wrap="soft"
+                        className={`${inputClass} mt-2 resize-none overflow-x-hidden overflow-y-auto max-h-72 min-h-[9rem] whitespace-pre-wrap break-words`}
                         value={form.message}
-                        onChange={set("message")}
+                        onChange={(e) => {
+                          set("message")(e);
+                          // auto-grow: height follows content, scrollbar only appears past max-h
+                          e.target.style.height = "auto";
+                          e.target.style.height = `${e.target.scrollHeight}px`;
+                        }}
                         placeholder="Describe your project and scope..."
                       />
                     </div>
@@ -271,7 +277,7 @@ export default function Contact() {
         </div>
         <div className="mt-10 lg:mt-16 overflow-hidden border border-line">
           <iframe
-            title="OCEANMAK Diving Services LLC location in Ajman"
+            title="OCEANMAK DIVING SERVICES LLC location in Ajman"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.0358905669814!2d55.5439735!3d25.437063600000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60a6fed1e8423145%3A0x56a268a8b6fd8185!2sOCEANMAK%20DIVING%20SERVICES%20LLC!5e0!3m2!1sen!2sin!4v1790881887764!5m2!1sen!2sin"
             className="block aspect-[4/3] w-full sm:aspect-[16/7]"
             style={{ border: 0 }}

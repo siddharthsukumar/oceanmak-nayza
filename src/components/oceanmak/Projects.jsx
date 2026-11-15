@@ -1,5 +1,4 @@
 import { ArrowUpRight, MapPin } from "lucide-react";
-import { Image } from "@/components/ui/image";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 import { IMAGES } from "@/lib/oceanmakImages";
@@ -67,12 +66,12 @@ export default function Projects() {
               className="group relative bg-abyss hover:bg-abyss-2 transition-colors flex flex-col"
             >
               <div className="relative aspect-[16/9] overflow-hidden">
-                <Image
+                <img
                   src={IMAGES.projects[p.key]}
+                  loading="lazy"
+                  decoding="async"
                   alt={p.name}
-                  className="w-full h-full object-cover brightness-75 group-hover:brightness-100 transition-all duration-500"
-                  fittingType="fill"
-                />
+                  className="w-full h-full object-cover brightness-75 group-hover:brightness-100 transition-all duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-abyss/90 to-transparent" />
                 <span className="absolute top-4 left-4 bg-precision text-abyss label-mono px-2.5 py-1">
                   {p.category}

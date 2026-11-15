@@ -1,4 +1,3 @@
-import { Image } from "@/components/ui/image";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 import { IMAGES } from "@/lib/oceanmakImages";
@@ -26,7 +25,7 @@ export default function About() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 text-white/65 leading-relaxed text-[15px] max-w-xl">
-                Oceanmak Marine Services LLC is a UAE-based commercial diving and marine
+                OCEANMAK DIVING SERVICES LLC is a UAE-based commercial diving and marine
                 engineering contractor. We deliver underwater inspection, construction,
                 maintenance and marine contracting services for infrastructure, industrial,
                 marine and waterfront projects.
@@ -50,12 +49,12 @@ export default function About() {
             <Reveal delay={0.1} className="relative">
               <div className="relative border border-line overflow-hidden">
                 <div className="aspect-[4/3]">
-                  <Image
+                  <img
                     src={IMAGES.about}
+                    loading="lazy"
+                    decoding="async"
                     alt="Oceanmak commercial diving team"
-                    className="w-full h-full object-cover"
-                    fittingType="fill"
-                  />
+                    className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-abyss/60 to-transparent" />
                 <span className="absolute top-4 left-4 label-mono text-precision">CREW // MOBILISATION</span>
