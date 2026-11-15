@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import { Image } from "@/components/ui/image";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
@@ -18,11 +17,6 @@ const SERVICES = [
   { key: "welding", title: "Underwater Welding & Cutting", desc: "Wet welding and cutting for structural repair and modification underwater." },
   { key: "buoy", title: "Buoy & Jellyfish Net Installation", desc: "Deployment and maintenance of marine buoys and exclusion / barrier net systems." },
 ];
-
-const goContact = (e) => {
-  e.preventDefault();
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-};
 
 export default function Services() {
   return (
@@ -67,13 +61,6 @@ export default function Services() {
                   {s.title}
                 </h3>
                 <p className="mt-3 text-white/55 text-sm leading-relaxed">{s.desc}</p>
-                <a
-                  href="#contact"
-                  onClick={goContact}
-                  className="mt-5 inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.15em] text-[11px] text-precision hover:text-white transition-colors"
-                >
-                  Learn More <ArrowUpRight size={13} />
-                </a>
                 <span className="corner-accent" />
               </div>
             </Reveal>
