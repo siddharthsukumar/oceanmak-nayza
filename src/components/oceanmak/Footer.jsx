@@ -36,8 +36,8 @@ export default function Footer() {
             </div>
             <p className="mt-5 text-white/55 text-sm leading-relaxed max-w-xs">
               Commercial diving and marine engineering contractor. Underwater inspection,
-              construction, maintenance and marine contracting across the UAE and the
-              wider Middle East.
+              construction, maintenance and marine contracting across the UAE, wider
+              Middle East and India.
             </p>
             <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-faint/60">
               OCEANMAK MARINE SERVICES LLC
@@ -95,7 +95,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2 text-white/60">
-                <MapPin size={14} /> Ajman, UAE
+                <MapPin size={14} /> Ajman, Abu Dhabi, Kochi
               </li>
             </ul>
 
@@ -109,7 +109,7 @@ export default function Footer() {
                 <span className="h-1.5 w-1.5 bg-precision animate-pulse-soft" />
               </div>
               <div className="mt-2 flex justify-between font-mono text-[9px] uppercase tracking-[0.2em] text-faint/50">
-                <span>AUH</span><span>DXB</span><span>AJMAN</span>
+                <span>AUH</span><span>DXB</span><span>AJMAN</span><span>KOCHI</span>
               </div>
             </div>
           </div>
@@ -117,7 +117,10 @@ export default function Footer() {
 
         {/* CTA strip */}
         <div className="mt-14 pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint/50">
+          <p
+            suppressHydrationWarning
+            className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint/50"
+          >
             © {new Date().getFullYear()} OCEANMAK MARINE SERVICES LLC — ALL RIGHTS RESERVED
           </p>
           <a

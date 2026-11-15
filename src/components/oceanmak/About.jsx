@@ -5,7 +5,7 @@ import { IMAGES } from "@/lib/oceanmakImages";
 
 const POINTS = [
   "Commercial diving and marine contracting capability built for regional projects.",
-  "Experienced personnel and safety-led mobilisation across the UAE and Middle East.",
+  "Experienced personnel and safety-led mobilisation across the UAE, wider Middle East and India.",
   "Engineered approach to inspection, construction, repair and subsea intervention.",
   "Commitment to reliable execution, reporting and documentation.",
 ];

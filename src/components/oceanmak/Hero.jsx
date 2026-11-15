@@ -45,7 +45,7 @@ export default function Hero() {
 
           <p className="mt-6 text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">
             Professional underwater inspection, construction, maintenance and marine
-            contracting services across the UAE and the wider Middle East.
+            contracting services across the UAE, wider Middle East and India.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">

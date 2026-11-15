@@ -5,7 +5,7 @@ const STATS = [
   { value: "UAE", label: "Regional Base" },
   { value: "12+", label: "Core Service Lines" },
   { value: "24/7", label: "Project Response" },
-  { value: "IMCA", label: "Aligned Practice" },
+  { value: "IMCA/ADCI", label: "Aligned Practices" },
 ];
 
 export default function Introduction() {
@@ -34,7 +34,7 @@ export default function Introduction() {
               <p className="mt-4 text-white/60 leading-relaxed text-[15px]">
                 From underwater inspection and construction to maintenance, salvage and
                 subsea support — our teams work to engineered specifications across the
-                UAE and the wider Middle East.
+                UAE, wider Middle East and India.
               </p>
             </Reveal>
           </div>
